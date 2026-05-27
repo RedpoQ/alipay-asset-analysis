@@ -1,0 +1,4 @@
+code,name,type,current_nav,current_price,as_of,source,currency,notes
+000001,示例核心基金A,fund,1.1420,,2026-05-21,demo_nav,CNY,
+110022,示例主动权益基金B,fund,1.9450,,2026-05-21,demo_nav,CNY,
+161725,示例行业主题基金C,fund,0.8010,,2026-05-21,demo_nav,CNY,

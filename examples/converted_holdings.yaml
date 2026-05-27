@@ -1,0 +1,25 @@
+funds:
+  - code: "161725"
+    name: "招商中证白酒指数A"
+    type: "fund"
+    cost_nav: 0.923
+    amount: 1200.0
+    target_position: 0.35
+    metadata:
+      source: "alipay_import"
+      raw_market_value: 1200.0
+      raw_shares: 980.0
+      raw_current_nav: 0.951
+      raw_profit_rate: 3.04
+  - code: "000248"
+    name: "汇添富中证主要消费ETF联接A"
+    type: "fund"
+    cost_nav: 1.102
+    amount: 860.0
+    target_position: 0.25
+    metadata:
+      source: "alipay_import"
+      raw_market_value: 860.0
+      raw_shares: 700.0
+      raw_current_nav: 1.128
+      raw_profit_rate: 2.35

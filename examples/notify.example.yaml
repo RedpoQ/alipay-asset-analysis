@@ -1,0 +1,31 @@
+channels:
+  - name: dry_run
+    enabled: true
+
+  - name: webhook
+    enabled: false
+    retry:
+      max_attempts: 2
+      backoff_seconds: 1
+
+  - name: email
+    enabled: false
+    retry:
+      max_attempts: 1
+      backoff_seconds: 0
+
+routing:
+  default_channels:
+    - dry_run
+
+  on_portfolio_warning:
+    - dry_run
+    - webhook
+
+  on_reduce_signal:
+    - dry_run
+    - email
+
+safety:
+  dry_run_default: true
+  allow_network_channels: false

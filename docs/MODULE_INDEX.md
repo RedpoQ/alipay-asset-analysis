@@ -1,0 +1,28 @@
+# Module Index
+
+- Module 1: standard holdings input, parsing, core asset model, signal engine, and report output.
+- Module 1.5: project cleanup, packaging hygiene, and clearer standalone engineering structure.
+- Module 2: Alipay-style holdings import and conversion into normalized fund holdings.
+- Module 3: offline-first data source layer with mock and optional public-fund adapters.
+- Module 4: configurable deterministic rule engine for explainable signals.
+- Module 5: reporter layer with offline-first summary generation and optional LLM interpretation boundary.
+- Module 6: OpenClaw skill wrapper for calling the existing pipeline safely.
+- Module 7: Hermes adapter for scheduler-friendly deterministic daily task output.
+- Module 8: stable report schema, run metadata, and latest pointer files.
+- Module 9: notification channels with dry-run-safe behavior.
+- Module 10: notification orchestration across configured channels.
+- Module 11: asset classification, group analysis, and portfolio structure warnings.
+- Module 12: local daily workflow orchestration for repeatable end-to-end runs.
+- Module 13: history indexing and trend report generation for dated local runs.
+- Module 14: release gate for local readiness and safer public-sharing hygiene.
+- Module 15: chat summary output for Hermes, WeChat, and mobile-friendly status reading.
+- Module 16: Chinese localization for summary and warning display text.
+- Module 17: QDII, overseas, and overlap exposure analysis without signal override.
+- Module 18: manual quote input and data freshness reporting.
+- Module 19: preflight validation for local inputs, quote freshness, and daily run readiness.
+- Module 20: built-in portfolio profiles with local override support.
+- Module 21: single-channel Alipay UX for simpler everyday operation.
+- Module 22: local onboarding and Alipay CSV hardening with repair hints.
+- Module 23: Hermes cronjob integration with safety-bound prompt templates.
+- Module 24: sanitized public demo export for safer sharing.
+- Module 25: project closeout, documentation restructuring, and `v0.1.0-local` release packaging.

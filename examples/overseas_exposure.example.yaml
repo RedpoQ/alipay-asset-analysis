@@ -1,0 +1,67 @@
+asset_patterns:
+  sp500:
+    display_name: "标普500"
+    tags: ["QDII", "美股", "标普500", "核心仓"]
+    role: "core"
+    keywords:
+      - "标普500"
+      - "S&P500"
+      - "SP500"
+      - "标普 500"
+
+  nasdaq100:
+    display_name: "纳斯达克100"
+    tags: ["QDII", "美股", "纳斯达克100", "科技成长", "高波动"]
+    role: "satellite"
+    keywords:
+      - "纳斯达克100"
+      - "纳指100"
+      - "NASDAQ100"
+      - "Nasdaq 100"
+
+  global_equity:
+    display_name: "全球权益"
+    tags: ["QDII", "海外权益", "全球精选"]
+    role: "diversifier"
+    keywords:
+      - "全球精选"
+      - "全球股票"
+      - "全球配置"
+
+  overseas:
+    display_name: "海外资产"
+    tags: ["QDII", "海外资产"]
+    role: "other"
+    keywords:
+      - "QDII"
+      - "海外"
+      - "全球"
+      - "美元"
+
+overlap_groups:
+  nasdaq100:
+    display_name: "纳斯达克100"
+    max_funds: 1
+    warning_when_more_than: 1
+    reason: "多只纳斯达克100基金底层资产高度重叠，不建议同时重仓或同时新增。"
+
+  us_equity:
+    display_name: "美股权益"
+    max_position: 0.70
+    tags_any: ["美股", "标普500", "纳斯达克100"]
+    warning: "美股相关资产占比较高，组合受美股市场波动影响较大。"
+
+role_limits:
+  core:
+    min_position: 0.30
+    max_position: 0.70
+  satellite:
+    max_position: 0.30
+  diversifier:
+    max_position: 0.30
+
+risk_notes:
+  qdii:
+    - "QDII基金可能存在净值更新滞后。"
+    - "QDII基金会受到汇率波动影响。"
+    - "海外市场、海外利率和地缘风险可能影响净值。"

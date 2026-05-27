@@ -1,0 +1,23 @@
+funds:
+  - code: "161725"
+    name: "招商中证白酒指数A"
+    type: "fund"
+    cost_nav: 0.923
+    amount: 1200
+    target_position: 0.35
+
+etfs:
+  - code: "510300"
+    name: "沪深300ETF"
+    type: "etf"
+    cost_price: 3.82
+    amount: 800
+    target_position: 0.30
+
+stocks:
+  - code: "AAPL"
+    name: "Apple"
+    type: "stock"
+    cost_price: 182.5
+    amount: 3
+    target_position: 0.15

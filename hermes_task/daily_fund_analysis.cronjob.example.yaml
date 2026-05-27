@@ -1,0 +1,17 @@
+name: 每日基金分析
+schedule: "30 21 * * *"
+timezone: Asia/Shanghai
+working_dir: "C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill"
+command: ".\\scripts\\daily_run.ps1"
+success_outputs:
+  - "reports/private/latest/chat_summary.txt"
+  - "reports/private/latest/report.json"
+  - "reports/private/latest/preflight_report.json"
+failure_behavior:
+  - "Do not generate fund analysis manually."
+  - "Read structured error output if available."
+  - "Tell user which file or config failed."
+safety:
+  - "Do not predict market prices."
+  - "Do not override add/reduce/hold."
+  - "Do not recommend automatic trading."

@@ -1,0 +1,4 @@
+code,name,type,current_nav,current_price,as_of,source,currency,notes
+000001,华夏成长混合,fund,1.234,,2026-05-18,manual_nav,CNY,
+110022,易方达消费行业股票,fund,2.100,,2026-05-18,manual_nav,CNY,
+161725,招商中证白酒指数(LOF)A,fund,0.680,,2026-05-18,manual_nav,CNY,

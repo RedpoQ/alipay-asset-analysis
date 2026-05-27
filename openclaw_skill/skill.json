@@ -1,0 +1,28 @@
+{
+  "name": "asset_analysis",
+  "description": "Run rule-based asset/fund holding analysis and generate JSON/Markdown reports.",
+  "entry": "openclaw_skill.asset_analysis_skill:run",
+  "format_note": "Generic adaptable manifest template because no project-specific OpenClaw manifest format was present in this workspace.",
+  "inputs": {
+    "holdings_path": "string",
+    "output_dir": "string",
+    "data_source": "mock|auto|public_fund",
+    "rules_path": "string|null",
+    "reporter": "offline|auto|llm",
+    "alipay_input_path": "string|null",
+    "alipay_output_path": "string|null",
+    "alipay_output_format": "yaml|json"
+  },
+  "outputs": {
+    "ok": "boolean",
+    "report_json": "string|null",
+    "report_md": "string|null",
+    "converted_holdings": "string|null",
+    "summary": "object|null",
+    "signals": "array",
+    "portfolio_warnings": "array",
+    "reporter": "object|null",
+    "warnings": "array",
+    "errors": "array"
+  }
+}

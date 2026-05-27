@@ -1,0 +1,18 @@
+name: daily_asset_analysis
+schedule: "daily 21:30 Asia/Shanghai"
+command: >
+  python -m asset_analysis.hermes_adapter
+  --holdings examples/real_existing_holdings.yaml
+  --output reports/hermes_daily
+  --data-source mock
+  --reporter offline
+working_dir: "."
+expected_outputs:
+  - reports/hermes_daily/report.json
+  - reports/hermes_daily/report.md
+failure_behavior:
+  - capture_json_output
+  - check_ok_false_and_errors
+  - do_not_generate_signals_outside_pipeline
+notes:
+  - Generic scheduling template because exact Hermes runtime schema is unknown in this workspace.

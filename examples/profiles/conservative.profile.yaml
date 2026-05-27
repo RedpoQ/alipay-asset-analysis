@@ -1,0 +1,27 @@
+profile:
+  name: conservative
+  display_name: 保守型
+  version: "1.0.0"
+  description: "偏防守的本地模板，强调债券、货币和分散化约束。"
+
+analysis:
+  rules: examples/rules.example.yaml
+  asset_groups: examples/asset_groups.example.yaml
+  portfolio_template: examples/profiles/conservative.portfolio_template.yaml
+  overseas_exposure: examples/overseas_exposure.example.yaml
+
+preflight:
+  strict_quotes: true
+  fail_on_stale_quotes: true
+  fail_on_duplicate_codes: true
+  max_normal_stale_days: 2
+  max_qdii_stale_days: 4
+
+chat_summary:
+  style: wechat
+  max_signals: 3
+  max_warnings: 5
+
+risk_notes:
+  - "该模板仅用于结构化检查，不代表投资建议。"
+  - "规则驱动，不预测价格。"

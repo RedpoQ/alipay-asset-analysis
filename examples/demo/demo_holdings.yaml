@@ -1,0 +1,28 @@
+funds:
+  - code: "000001"
+    name: "示例核心基金A"
+    type: "fund"
+    cost_nav: 1.1200
+    amount: 1200
+    target_position: 0.25
+    metadata:
+      group: "active_equity"
+      tags: ["核心", "示例"]
+  - code: "110022"
+    name: "示例主动权益基金B"
+    type: "fund"
+    cost_nav: 1.8600
+    amount: 2600
+    target_position: 0.35
+    metadata:
+      group: "active_equity"
+      tags: ["主动权益", "消费"]
+  - code: "161725"
+    name: "示例行业主题基金C"
+    type: "fund"
+    cost_nav: 0.7800
+    amount: 900
+    target_position: 0.20
+    metadata:
+      group: "sector_theme"
+      tags: ["行业主题", "消费"]

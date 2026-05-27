@@ -1,0 +1,2 @@
+# Optional but recommended for full YAML parsing.
+PyYAML>=6.0

@@ -1,0 +1,15 @@
+private/*.csv
+private/*.yaml
+private/*.json
+private/*.xlsx
+reports/private/
+reports/daily/
+.env
+*.local.yaml
+*.local.csv
+*.local.json
+
+!private/*.example.yaml
+!private/*.example.csv
+!private/*.example.json
+!private/.gitkeep

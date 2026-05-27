@@ -1,0 +1,5 @@
+history:
+  enabled: true
+  reports_dir: reports/daily
+  index_path: reports/history_index.json
+  trend_output_dir: reports/trend

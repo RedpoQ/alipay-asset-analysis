@@ -1,0 +1,27 @@
+profile:
+  name: growth
+  display_name: 成长型
+  version: "1.0.0"
+  description: "允许更高权益暴露，但仍对单主题集中度保持警惕。"
+
+analysis:
+  rules: examples/rules.example.yaml
+  asset_groups: examples/asset_groups.example.yaml
+  portfolio_template: examples/profiles/growth.portfolio_template.yaml
+  overseas_exposure: examples/overseas_exposure.example.yaml
+
+preflight:
+  strict_quotes: false
+  fail_on_stale_quotes: false
+  fail_on_duplicate_codes: false
+  max_normal_stale_days: 3
+  max_qdii_stale_days: 5
+
+chat_summary:
+  style: wechat
+  max_signals: 4
+  max_warnings: 5
+
+risk_notes:
+  - "该模板仅用于结构化检查，不代表投资建议。"
+  - "规则驱动，不预测价格。"

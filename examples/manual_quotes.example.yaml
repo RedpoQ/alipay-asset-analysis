@@ -1,0 +1,22 @@
+quotes:
+  - code: "000001"
+    name: "华夏成长混合"
+    type: "fund"
+    current_nav: 1.234
+    as_of: "2026-05-18"
+    source: "manual_nav"
+    currency: "CNY"
+  - code: "110022"
+    name: "易方达消费行业股票"
+    type: "fund"
+    current_nav: 2.100
+    as_of: "2026-05-18"
+    source: "manual_nav"
+    currency: "CNY"
+  - code: "161725"
+    name: "招商中证白酒指数(LOF)A"
+    type: "fund"
+    current_nav: 0.680
+    as_of: "2026-05-18"
+    source: "manual_nav"
+    currency: "CNY"

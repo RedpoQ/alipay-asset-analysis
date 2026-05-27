@@ -1,0 +1,21 @@
+groups:
+  broad_index:
+    target_position: 0.25
+    max_position: 0.35
+  sector_theme:
+    target_position: 0.08
+    max_position: 0.15
+  active_equity:
+    target_position: 0.15
+    max_position: 0.25
+  bond:
+    target_position: 0.30
+    max_position: 0.45
+  money_market:
+    target_position: 0.22
+    max_position: 0.35
+
+rules:
+  warn_when_group_over_max: true
+  warn_when_group_under_target_by: 0.08
+  warn_when_single_tag_concentration_over: 0.22

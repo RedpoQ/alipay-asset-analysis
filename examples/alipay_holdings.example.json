@@ -1,0 +1,19 @@
+[
+  {
+    "code": "000001",
+    "name": "Example Fund",
+    "market_value": 500,
+    "shares": 300,
+    "cost_nav": 1.234,
+    "current_nav": 1.3,
+    "target_position": 0.25
+  },
+  {
+    "code": "161725",
+    "name": "招商中证白酒指数A",
+    "market_value": 1200,
+    "shares": 980,
+    "current_nav": 0.951,
+    "target_position": 0.35
+  }
+]

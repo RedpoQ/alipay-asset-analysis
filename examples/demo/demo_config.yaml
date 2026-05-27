@@ -1,0 +1,27 @@
+profile:
+  name: balanced
+  file: examples/profiles/balanced.profile.yaml
+
+input:
+  mode: holdings_yaml
+  holdings_yaml: examples/demo/demo_holdings.yaml
+
+output:
+  daily_dir: reports/demo/generated_daily
+  latest_dir: reports/demo/generated_latest
+
+analysis:
+  data_source: mock
+  reporter: offline
+  rules: examples/rules.example.yaml
+  asset_groups: examples/asset_groups.example.yaml
+  portfolio_template: examples/portfolio_template.example.yaml
+  overseas_exposure: examples/overseas_exposure.example.yaml
+  quotes: examples/demo/demo_manual_quotes.csv
+
+notification:
+  enabled: false
+  dry_run: true
+
+preflight:
+  enabled: true

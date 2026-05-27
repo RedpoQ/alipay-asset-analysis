@@ -1,0 +1,26 @@
+funds:
+  - code: "000001"
+    name: "示例基金"
+    type: "fund"
+    cost_nav: 1.234
+    amount: 500
+    target_position: 0.25
+    metadata:
+      group: "active_equity"
+      tags: ["主动权益", "示例"]
+
+etfs:
+  - code: "510300"
+    name: "沪深300ETF"
+    type: "etf"
+    cost_price: 3.8
+    amount: 1000
+    target_position: 0.30
+
+stocks:
+  - code: "AAPL"
+    name: "Apple"
+    type: "stock"
+    cost_price: 180
+    amount: 2
+    target_position: 0.20

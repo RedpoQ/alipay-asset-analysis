@@ -1,0 +1,18 @@
+portfolio:
+  max_single_position: 0.35
+  max_fund_position: 0.80
+  min_cash_position: 0.05
+
+position:
+  rebalance_band: 0.05
+  strong_underweight_band: 0.10
+  overweight_band: 0.08
+
+profit:
+  deep_loss_threshold: -0.15
+  mild_loss_threshold: -0.05
+  take_profit_threshold: 0.20
+
+risk:
+  forbid_add_when_deep_loss: true
+  reduce_when_extreme_overweight: true

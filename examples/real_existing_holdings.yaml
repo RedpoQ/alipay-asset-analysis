@@ -1,0 +1,37 @@
+funds:
+  - code: "000001"
+    name: "华夏成长混合"
+    type: "fund"
+    cost_nav: 1.18
+    amount: 500.0
+    target_position: 0.25
+    metadata:
+      source: "alipay_import"
+      raw_market_value: 500.0
+      raw_shares: 401.28
+      raw_current_nav: 1.246
+      raw_profit_rate: 5.59
+  - code: "110022"
+    name: "易方达消费行业股票"
+    type: "fund"
+    cost_nav: 3.12
+    amount: 800.0
+    target_position: 0.3
+    metadata:
+      source: "alipay_import"
+      raw_market_value: 800.0
+      raw_shares: 267.29
+      raw_current_nav: 2.993
+      raw_profit_rate: -4.07
+  - code: "161725"
+    name: "招商中证白酒指数(LOF)A"
+    type: "fund"
+    cost_nav: 0.66
+    amount: 600.0
+    target_position: 0.2
+    metadata:
+      source: "alipay_import"
+      raw_market_value: 600.0
+      raw_shares: 1023.72
+      raw_current_nav: 0.5861
+      raw_profit_rate: -11.2
