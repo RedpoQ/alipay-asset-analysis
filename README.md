@@ -14,7 +14,7 @@ python -m asset_analysis.onboarding.init_project
 .\scripts\daily_run.ps1
 ```
 
-Detailed setup is in [docs/QUICK_START.md](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/QUICK_START.md).
+Detailed setup is in [docs/QUICK_START.md](docs/QUICK_START.md).
 
 ## Daily Usage
 
@@ -34,12 +34,12 @@ Detailed setup is in [docs/QUICK_START.md](C:/Users/20634/Documents/openclaw与h
 
 ## Docs
 
-- [Quick Start](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/QUICK_START.md)
-- [Daily Workflow](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/DAILY_WORKFLOW.md)
-- [Hermes Integration](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/HERMES_INTEGRATION.md)
-- [Config Reference](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/CONFIG_REFERENCE.md)
-- [Privacy And Safety](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/PRIVACY_AND_SAFETY.md)
-- [Module Index](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/MODULE_INDEX.md)
-- [Release Checklist](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/docs/RELEASE_CHECKLIST.md)
-- [Release Notes](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/RELEASE_NOTES_v0.1.0-local.md)
-- [Changelog](C:/Users/20634/Documents/openclaw与hermes_支付宝基金_skill/CHANGELOG.md)
+- [Quick Start](docs/QUICK_START.md)
+- [Daily Workflow](docs/DAILY_WORKFLOW.md)
+- [Hermes Integration](docs/HERMES_INTEGRATION.md)
+- [Config Reference](docs/CONFIG_REFERENCE.md)
+- [Privacy And Safety](docs/PRIVACY_AND_SAFETY.md)
+- [Module Index](docs/MODULE_INDEX.md)
+- [Release Checklist](docs/RELEASE_CHECKLIST.md)
+- [Release Notes](RELEASE_NOTES_v0.1.0-local.md)
+- [Changelog](CHANGELOG.md)

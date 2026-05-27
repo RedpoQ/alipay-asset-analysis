@@ -1,7 +1,11 @@
+__pycache__/
+*.pyc
+
 private/*.csv
 private/*.yaml
 private/*.json
 private/*.xlsx
+reports/*
 reports/private/
 reports/daily/
 .env
@@ -13,3 +17,7 @@ reports/daily/
 !private/*.example.csv
 !private/*.example.json
 !private/.gitkeep
+!reports/.gitkeep
+!reports/release_gate/
+reports/release_gate/*
+!reports/release_gate/.gitkeep
