@@ -46,7 +46,24 @@ def build_chat_summary(
 
     signal_counts = _count_signals(signals)
     asset_name_map = build_asset_name_map(payload)
-    top_signals = [localize_signal_entry(item) for item in signals[:max_signals]]
+    
+    # 构建 positions 查找表，用于添加市值和占比
+    positions_by_code = {}
+    for pos in positions:
+        code = str(pos.get("code", ""))
+        if code:
+            positions_by_code[code] = pos
+    
+    top_signals = []
+    for item in signals[:max_signals]:
+        localized = localize_signal_entry(item)
+        code = str(item.get("code", ""))
+        if code in positions_by_code:
+            pos = positions_by_code[code]
+            localized["market_value"] = pos.get("market_value", 0)
+            localized["current_position"] = pos.get("current_position", 0)
+            localized["target_position"] = pos.get("target_position", 0)
+        top_signals.append(localized)
     exposure_risk_notes = [str(item) for item in exposure_analysis.get("risk_notes", []) if item]
     all_warnings = _dedupe(portfolio_warnings + group_warnings + tag_warnings + exposure_warnings + exposure_risk_notes)
     top_warnings = [localize_warning_entry(item, asset_name_map=asset_name_map) for item in all_warnings[:max_warnings]]
@@ -67,7 +84,30 @@ def build_chat_summary(
     one_line = _build_one_line(summary, signal_counts, top_warnings, data_status)
     sections = _build_sections(summary, top_signals, top_warnings, data_status, payload)
     text = _render_text(title="每日基金分析", one_line=one_line, sections=sections)
-
+    
+    # 构建 all_positions，包含所有持仓信息
+    all_positions = []
+    for pos in positions:
+        code = str(pos.get("code", ""))
+        name = str(pos.get("name", ""))
+        market_value = pos.get("market_value", 0)
+        current_position = pos.get("current_position", 0)
+        
+        # 查找对应的信号
+        signal_type = "hold"
+        for signal in signals:
+            if str(signal.get("code", "")) == code:
+                signal_type = str(signal.get("signal", "hold"))
+                break
+        
+        all_positions.append({
+            "code": code,
+            "name": name,
+            "market_value": market_value,
+            "current_position": current_position,
+            "signal": signal_type,
+        })
+    
     return {
         "schema_version": ASSET_ANALYSIS_SCHEMA_VERSION,
         "generated_at": datetime.now().astimezone().isoformat(),
@@ -77,6 +117,7 @@ def build_chat_summary(
         "data_status": data_status,
         "signals_summary": signal_counts,
         "top_signals": top_signals,
+        "all_positions": all_positions,
         "warnings_localized": top_warnings,
         "sections": sections,
         "text": text,

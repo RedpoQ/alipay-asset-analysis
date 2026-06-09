@@ -12,7 +12,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Build a deterministic mobile-friendly chat summary from report.json.")
     parser.add_argument("--report", required=True, help="Path to report.json.")
     parser.add_argument("--output", required=True, help="Path to chat summary text or markdown output.")
-    parser.add_argument("--format", choices=("text", "markdown"), default="text", help="Formatted output type.")
+    parser.add_argument("--format", choices=("text", "markdown", "wechat"), default="text", help="Formatted output type.")
     parser.add_argument("--json-output", default=None, help="Optional path for chat_summary.json.")
     parser.add_argument("--max-signals", type=int, default=3)
     parser.add_argument("--max-warnings", type=int, default=5)
