@@ -1,6 +1,6 @@
 # Asset Analysis
 
-当前版本：`v0.1.0-local`
+当前版本：`v0.2.0`
 
 `asset_analysis` 是一个面向个人日常使用的本地基金/资产分析工具，当前重点适配单渠道的支付宝基金持仓场景。
 
@@ -48,24 +48,29 @@
 - QDII / 海外曝险与重叠提示
 - preflight 数据检查
 - release gate 安全检查
+- **基金申购状态检查**（暂停申购/限购/大额限制）
 
 ## 日常使用：3 个命令
 
 1. 安装依赖
 
-```powershell
+```bash
 python -m pip install -r requirements.txt
 ```
 
 2. 初始化本地模板
 
-```powershell
+```bash
 python -m asset_analysis.onboarding.init_project
 ```
 
 3. 运行每日流程
 
-```powershell
+```bash
+# Linux/macOS
+./scripts/daily_run.sh
+
+# Windows
 .\scripts\daily_run.ps1
 ```
 
@@ -83,7 +88,7 @@ python -m asset_analysis.onboarding.init_project
 
 常用命令：
 
-```powershell
+```bash
 python -m asset_analysis.ux.setup_check --config private/config.local.yaml
 python -m asset_analysis.workflow.daily_run --config private/config.local.yaml
 ```
@@ -99,7 +104,7 @@ python -m asset_analysis.workflow.daily_run --config private/config.local.yaml
 
 如果你只是想快速验证 Hermes 接入，建议先跑最小离线链路：
 
-```powershell
+```bash
 python -m asset_analysis.hermes_adapter --holdings examples/real_existing_holdings.yaml --output reports/hermes_daily --data-source mock --reporter offline
 ```
 
@@ -111,9 +116,52 @@ python -m asset_analysis.hermes_adapter --holdings examples/real_existing_holdin
 
 如果还要生成聊天摘要：
 
-```powershell
+```bash
 python -m asset_analysis.chat_summary.cli --report reports/hermes_daily/report.json --output reports/hermes_daily/chat_summary.txt --json-output reports/hermes_daily/chat_summary.json
 ```
+
+## 基金申购状态检查
+
+新增功能：自动检查持仓基金的申购状态，包括：
+
+- 开放申购
+- 暂停申购
+- 限制大额申购
+- 限制申购
+
+### 使用方式
+
+申购状态检查已集成到 `hermes_adapter.py`，运行分析时会自动检查：
+
+```bash
+python -m asset_analysis.hermes_adapter --holdings your_holdings.yaml --output reports/hermes_daily --data-source mock
+```
+
+输出示例：
+
+```
+申购状态摘要：
+000834: 申购✅ 开放申购 | 赎回✅ 开放赎回
+006075: 申购❌ 暂停申购 | 赎回✅ 开放赎回
+021277: 申购✅ 限制大额申购 | 赎回✅ 开放赎回
+  限制: 限制大额申购
+```
+
+### 独立使用
+
+也可以单独检查基金申购状态：
+
+```python
+from asset_analysis.fund_purchase_status import check_fund_purchase_status
+
+status = check_fund_purchase_status("000834")
+print(f"{status.code}: {status.purchase_status}")
+print(f"可申购: {status.is_purchase_allowed}")
+```
+
+### 数据来源
+
+使用东方财富基金API获取申购状态数据，无需API key。
 
 ## 数据源说明
 
@@ -153,7 +201,7 @@ python -m asset_analysis.chat_summary.cli --report reports/hermes_daily/report.j
 
 在公开分享或发给别人测试前，建议先运行：
 
-```powershell
+```bash
 python -m asset_analysis.release.gate --output reports/release_gate --skip-tests
 ```
 
