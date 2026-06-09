@@ -21,3 +21,7 @@ reports/daily/
 !reports/release_gate/
 reports/release_gate/*
 !reports/release_gate/.gitkeep
+
+# Personal data
+redpoq_holdings.yaml
+run_daily_analysis.sh

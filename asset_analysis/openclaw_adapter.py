@@ -22,6 +22,7 @@ def run_asset_analysis_skill(
     alipay_output_path: str | None = None,
     alipay_output_format: str = "yaml",
     archive: bool = False,
+    quotes_path: str | None = None,
 ) -> dict[str, Any]:
     warnings: list[str] = []
     errors: list[dict[str, str]] = []
@@ -76,6 +77,7 @@ def run_asset_analysis_skill(
             rules_path=rules_path,
             reporter_mode=reporter,
             archive=archive,
+            quotes_path=quotes_path,
         )
     except Exception as exc:
         return _failure("pipeline", "PIPELINE_ERROR", str(exc), warnings=warnings)
@@ -142,13 +144,14 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run the asset_analysis OpenClaw-compatible adapter.")
     parser.add_argument("--holdings", required=False, default="", help="Path to standard holdings YAML/JSON.")
     parser.add_argument("--output", required=True, help="Directory for generated reports.")
-    parser.add_argument("--data-source", choices=("mock", "auto", "public_fund"), default="mock")
+    parser.add_argument("--data-source", choices=("mock", "manual", "auto", "public_fund"), default="mock")
     parser.add_argument("--rules", default=None, help="Optional rules config path.")
     parser.add_argument("--reporter", choices=("offline", "auto", "llm"), default="offline")
     parser.add_argument("--archive", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--alipay-input", default=None, help="Optional Alipay CSV/JSON input path.")
     parser.add_argument("--alipay-output", default=None, help="Optional converted holdings output path.")
     parser.add_argument("--alipay-output-format", choices=("yaml", "json"), default="yaml")
+    parser.add_argument("--quotes", default=None, help="Path to manual quotes CSV/YAML for data_source=manual.")
     return parser
 
 
@@ -164,6 +167,7 @@ def main(argv: list[str] | None = None) -> int:
         alipay_output_path=args.alipay_output,
         alipay_output_format=args.alipay_output_format,
         archive=args.archive,
+        quotes_path=args.quotes,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["ok"] else 1

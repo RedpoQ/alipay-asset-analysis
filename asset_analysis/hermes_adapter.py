@@ -7,6 +7,7 @@ from typing import Any
 
 from .chat_summary.builder import build_chat_summary
 from .chat_summary.formatter import format_chat_summary
+from .fund_purchase_status import batch_check_purchase_status, get_purchase_status_summary
 from .openclaw_adapter import run_asset_analysis_skill
 from .schema.adapter_schema import merge_adapter_contract
 from .schema.errors import make_error
@@ -22,6 +23,7 @@ def run_daily_asset_analysis_task(
     reporter: str = "offline",
     summarize_markdown: bool = True,
     archive: bool = False,
+    quotes_path: str | None = None,
 ) -> dict[str, Any]:
     warnings: list[str] = []
 
@@ -37,6 +39,7 @@ def run_daily_asset_analysis_task(
             reporter=reporter,
             alipay_input_path=alipay_input_path,
             archive=archive,
+            quotes_path=quotes_path,
         )
     except Exception as exc:
         return _failure("adapter", "ADAPTER_ERROR", str(exc), warnings)
@@ -100,6 +103,25 @@ def run_daily_asset_analysis_task(
     if summarize_markdown and not markdown_text.strip():
         warnings.append("report.md was empty when the Hermes summary tried to read it.")
 
+    # 检查基金申购状态
+    purchase_status_info = None
+    try:
+        # 从持仓文件中提取基金代码
+        if holdings_path:
+            import yaml
+            with open(holdings_path, 'r', encoding='utf-8') as f:
+                holdings_data = yaml.safe_load(f)
+            fund_codes = [fund.get('code') for fund in holdings_data.get('funds', []) if fund.get('code')]
+            if fund_codes:
+                purchase_statuses = batch_check_purchase_status(fund_codes)
+                purchase_status_info = get_purchase_status_summary(purchase_statuses)
+                # 添加到警告中
+                for code, status in purchase_statuses.items():
+                    if not status.is_purchase_allowed and not status.error:
+                        warnings.append(f"{code}: {status.purchase_status}，无法申购")
+    except Exception as exc:
+        warnings.append(f"申购状态检查失败: {exc}")
+
     result = merge_adapter_contract(
         {
         "ok": True,
@@ -113,6 +135,7 @@ def run_daily_asset_analysis_task(
         "reporter": payload.get("reporter"),
         "chat_summary_text": chat_summary_text,
         "daily_message": daily_message,
+        "purchase_status": purchase_status_info,
         "errors": [],
         "warnings": warnings,
         }
@@ -193,7 +216,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--holdings", default=None, help="Path to standard holdings YAML/JSON.")
     parser.add_argument("--alipay-input", default=None, help="Path to Alipay CSV/JSON input.")
     parser.add_argument("--output", default="reports/hermes_daily", help="Directory for generated reports.")
-    parser.add_argument("--data-source", choices=("mock", "auto", "public_fund"), default="mock")
+    parser.add_argument("--data-source", choices=("mock", "manual", "auto", "public_fund"), default="mock")
     parser.add_argument("--rules", default=None, help="Optional rules config path.")
     parser.add_argument("--reporter", choices=("offline", "auto", "llm"), default="offline")
     parser.add_argument("--archive", action=argparse.BooleanOptionalAction, default=False)
@@ -203,6 +226,7 @@ def _build_parser() -> argparse.ArgumentParser:
         default=True,
         help="Read generated report.md while building the deterministic Hermes summary.",
     )
+    parser.add_argument("--quotes", default=None, help="Path to manual quotes CSV/YAML for data_source=manual.")
     return parser
 
 
@@ -217,6 +241,7 @@ def main(argv: list[str] | None = None) -> int:
         reporter=args.reporter,
         summarize_markdown=args.summarize_markdown,
         archive=args.archive,
+        quotes_path=args.quotes,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["ok"] else 1
